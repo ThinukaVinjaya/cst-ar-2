@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>CST LAN Challenge – Waving Character AR</title>
+<title>CST LAN Challenge – Fist Fight AR</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -506,7 +506,7 @@ header p { margin: 6px 0 0; color: var(--mute); font-size: 1.1rem; }
 <body>
 <header>
   <h1>CST LAN Challenge</h1>
-  <p>Tap Open AR camera, scan the table, and walk 360° around the character.</p>
+  <p>Tap Open AR camera, scan the table, and walk 360° around the fighter.</p>
 </header>
 
 <div id="stage">
@@ -525,7 +525,7 @@ header p { margin: 6px 0 0; color: var(--mute); font-size: 1.1rem; }
             <span class="hud-tag-pulse"></span>
             <span>SYS // AR_INITIALIZER v2</span>
           </div>
-          <h2 id="hud-model-name" class="hud-model-title">Waving Character</h2>
+          <h2 id="hud-model-name" class="hud-model-title">Fist Fight A</h2>
         </div>
         <div class="hud-type-badge">SKELETAL 3D</div>
       </div>
@@ -538,7 +538,7 @@ header p { margin: 6px 0 0; color: var(--mute); font-size: 1.1rem; }
         <div class="holo-ring-inner"></div>
         <!-- Radial Pulsing Glow Core -->
         <div class="holo-core-glow"></div>
-        <!-- Center Holographic SVG Icon: Waving Cyber Avatar -->
+        <!-- Center Holographic SVG Icon: Clenched Cyber Fist -->
         <div class="holo-icon-box">
           <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <!-- Targeting Reticle Crosshairs -->
@@ -547,17 +547,21 @@ header p { margin: 6px 0 0; color: var(--mute); font-size: 1.1rem; }
             <line x1="32" y1="56" x2="32" y2="62" stroke="var(--hud-accent)" stroke-width="2" stroke-linecap="round"/>
             <line x1="2" y1="32" x2="8" y2="32" stroke="var(--hud-accent)" stroke-width="2" stroke-linecap="round"/>
             <line x1="56" y1="32" x2="62" y2="32" stroke="var(--hud-accent)" stroke-width="2" stroke-linecap="round"/>
-            <!-- Waving Gesture Signal Waves -->
-            <path d="M12 24C10 27 10 32 12 36" stroke="var(--hud-accent)" stroke-width="1.8" stroke-linecap="round" stroke-opacity="0.7"/>
-            <path d="M7 19C4 25 4 37 7 43" stroke="var(--hud-accent)" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="2 2" stroke-opacity="0.5"/>
-            <!-- High-Tech Waving Hand & Palm -->
-            <path d="M26 48V36C26 34.5 27.5 33.5 29 33.5C30.5 33.5 32 34.5 32 36V22C32 20.5 33.5 19.5 35 19.5C36.5 19.5 38 20.5 38 22V24C38 22.5 39.5 21.5 41 21.5C42.5 21.5 44 22.5 44 24V26C44 24.5 45.5 23.5 47 23.5C48.5 23.5 50 24.5 50 26V39C50 46 45 51 38 51H32C28.5 51 26 49.5 26 48Z"
-              fill="rgba(0, 255, 204, 0.16)" stroke="var(--hud-accent)" stroke-width="2" stroke-linejoin="round"/>
-            <!-- Circuit Nodes on Palm -->
-            <circle cx="37" cy="40" r="2.5" fill="var(--hud-accent)"/>
-            <line x1="37" y1="42.5" x2="37" y2="47" stroke="var(--hud-accent)" stroke-width="1.5"/>
-            <line x1="34.5" y1="40" x2="30" y2="40" stroke="var(--hud-accent)" stroke-width="1.5"/>
-            <circle cx="30" cy="40" r="1.5" fill="var(--hud-accent)"/>
+            <!-- Energy Impact Shockwaves -->
+            <path d="M12 25L6 23M12 39L6 41M52 25L58 23M52 39L58 41" stroke="var(--hud-accent)" stroke-width="2" stroke-linecap="round"/>
+            <!-- Clenched Cyber Combat Fist -->
+            <!-- Forearm / Wrist Guard -->
+            <path d="M25 53H39L42 44H22L25 53Z" fill="rgba(0, 255, 204, 0.12)" stroke="var(--hud-accent)" stroke-width="1.8" stroke-linejoin="round"/>
+            <!-- Fist Main Block -->
+            <path d="M21 44L19 32C19 28 22 26 25 26H39C42 26 45 28 45 32L43 44H21Z" fill="rgba(0, 255, 204, 0.2)" stroke="var(--hud-accent)" stroke-width="2" stroke-linejoin="round"/>
+            <!-- Knuckle Armor Segments -->
+            <line x1="26" y1="26" x2="26" y2="36" stroke="var(--hud-accent)" stroke-width="1.6"/>
+            <line x1="32" y1="26" x2="32" y2="36" stroke="var(--hud-accent)" stroke-width="1.6"/>
+            <line x1="38" y1="26" x2="38" y2="36" stroke="var(--hud-accent)" stroke-width="1.6"/>
+            <!-- Thumb Fold -->
+            <path d="M19 35C17 36 17 39 20 41H36" stroke="var(--hud-accent)" stroke-width="2" stroke-linecap="round"/>
+            <!-- Power Spark Core -->
+            <polygon points="32,19 34,22 37,22 35,24 36,27 32,25 28,27 29,24 27,22 30,22" fill="var(--hud-accent)"/>
           </svg>
         </div>
       </div>
@@ -610,7 +614,7 @@ header p { margin: 6px 0 0; color: var(--mute); font-size: 1.1rem; }
       <button id="retry">↺ RETRY SYNC</button>
     </div>
   </div>
-  <button id="xr" class="ar-cta" disabled>Loading Waving…</button>
+  <button id="xr" class="ar-cta" disabled>Loading Fighter…</button>
   <a id="android-sv" class="ar-cta" href="#">Open AR camera</a>
   <a id="ios-ar" class="ar-cta" rel="ar" href="models/ghost_salute_blender.usdz?v=table_fixed_2#allowsContentScaling=0">
     <img alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
@@ -631,8 +635,8 @@ import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 
 // Project Specifications: Configurable parameters
 const HUD_CONFIG = {
-  modelName: 'Waving Character',
-  modelUrl: 'https://cst-lan.s3.eu-north-1.amazonaws.com/Waving.fbx',
+  modelName: 'Fist Fight A',
+  modelUrl: 'https://cst-lan.s3.eu-north-1.amazonaws.com/Fist+Fight+A.fbx',
   fallbackModelUrl: 'Fist_Fight_A.fbx', // Local backup file in project
   accentColor: '#00ffcc',               // Cyber Neon Cyan
   fallbackSizeMB: 7.6
@@ -733,7 +737,7 @@ if (isAndroid && !hasWebXR) {
   const glbUrl = new URL('models/ghost_salute.glb?v=3', window.location.href).href;
   const fallbackUrl = encodeURIComponent(window.location.href);
   androidSvBtn.href =
-    `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(glbUrl)}&mode=ar_only&resizable=false&title=Waving+Character` +
+    `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(glbUrl)}&mode=ar_only&resizable=false&title=Fist+Fight+A` +
     `#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url=${fallbackUrl};end;`;
 }
 
@@ -743,18 +747,18 @@ function updateButtons() {
     androidSvBtn.style.display = 'none';
     iosBtn.style.display = 'none';
     xrBtn.disabled = !modelReady;
-    xrBtn.textContent = modelReady ? 'Open AR camera' : 'Loading Waving…';
-    if (modelReady) note.textContent = 'Tap Open AR camera, scan the table, then walk 360° around the character.';
+    xrBtn.textContent = modelReady ? 'Open AR camera' : 'Loading Fighter…';
+    if (modelReady) note.textContent = 'Tap Open AR camera, scan the table, then walk 360° around the fighter.';
   } else if (isIOS) {
     xrBtn.style.display = 'none';
     androidSvBtn.style.display = 'none';
     iosBtn.style.display = 'block';
-    if (modelReady) note.textContent = 'Tap Open AR camera, scan the real table, and walk 360° around the character.';
+    if (modelReady) note.textContent = 'Tap Open AR camera, scan the real table, and walk 360° around the fighter.';
   } else if (isAndroid) {
     xrBtn.style.display = 'none';
     androidSvBtn.style.display = 'block';
     iosBtn.style.display = 'none';
-    if (modelReady) note.textContent = 'Tap Open AR camera, scan the table, and walk 360° around the character.';
+    if (modelReady) note.textContent = 'Tap Open AR camera, scan the table, and walk 360° around the fighter.';
   } else {
     xrBtn.style.display = 'none';
     androidSvBtn.style.display = 'none';
@@ -1015,7 +1019,7 @@ xrBtn.onclick = async () => {
 
   ov.style.display = 'block';
   statusEl.style.display = 'block';
-  statusEl.textContent = 'Scan table… Tap screen to place character.';
+  statusEl.textContent = 'Scan table… Tap screen to place fighter.';
 
   let session;
   try {
@@ -1097,7 +1101,7 @@ xrBtn.onclick = async () => {
     snapFrames = 0;
 
     statusEl.style.display = 'block';
-    statusEl.textContent = 'Character fixed to table! Walk 360° around. (Tap to move)';
+    statusEl.textContent = 'Fighter fixed to table! Walk 360° around. (Tap to move)';
     setTimeout(() => { statusEl.style.display = 'none'; }, 3000);
   }
 
