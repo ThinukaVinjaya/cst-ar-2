@@ -503,38 +503,6 @@ header p { margin: 6px 0 0; color: var(--mute); font-size: 1.1rem; }
 #overlay { display: none; position: fixed; inset: 0; pointer-events: none; z-index: 20; }
 #status { position: absolute; top: calc(14px + env(safe-area-inset-top)); left: 14px; right: 14px; text-align: center; background: rgba(11, 17, 20, 0.88); color: var(--ink); padding: 10px 16px; font-size: 1.2rem; border-radius: 4px; border: 1px solid rgba(0, 255, 204, 0.25); }
 #exit { position: absolute; bottom: calc(16px + env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); pointer-events: auto; padding: 12px 28px; font: inherit; font-size: 1.2rem; background: rgba(11, 17, 20, 0.9); color: var(--ink); border: 1px solid rgba(0, 255, 204, 0.3); border-radius: 4px; cursor: pointer; }
-
-/* Cyber-HUD AR Scale Bar Controls */
-.scale-bar-container {
-  display: flex;
-  gap: 8px;
-  pointer-events: auto;
-  align-items: center;
-}
-.scale-btn {
-  padding: 8px 14px;
-  background: rgba(11, 17, 20, 0.88);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: var(--hud-accent);
-  border: 1px solid var(--hud-accent);
-  border-radius: 4px;
-  font-family: var(--hud-font-mono);
-  font-size: 0.85rem;
-  font-weight: 700;
-  cursor: pointer;
-  letter-spacing: 0.05em;
-  transition: all 0.2s ease;
-  box-shadow: 0 0 10px rgba(0, 255, 204, 0.15);
-  user-select: none;
-}
-.scale-btn:active {
-  transform: scale(0.96);
-}
-.scale-btn.reset {
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.4);
-}
 </style>
 </head>
 <body>
@@ -649,12 +617,6 @@ header p { margin: 6px 0 0; color: var(--mute); font-size: 1.1rem; }
     </div>
   </div>
   <video id="cam-video" playsinline autoplay muted style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;pointer-events:none;"></video>
-  <!-- Stage Scale Controls (Preview & Live Camera AR) -->
-  <div id="stage-scale-bar" class="scale-bar-container" style="position:absolute;bottom:94px;left:50%;transform:translateX(-50%);z-index:6;">
-    <button class="scale-btn scale-down-btn" title="Shrink to 80%">− Smaller</button>
-    <button class="scale-btn reset scale-reset-btn" title="Reset to 25cm Table Scale">25cm Table</button>
-    <button class="scale-btn scale-up-btn" title="Enlarge to 125%">+ Bigger</button>
-  </div>
   <button id="exit-cam" style="display:none;position:absolute;bottom:calc(20px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);padding:14px 28px;background:rgba(11,17,20,0.92);color:var(--hud-accent);border:1.5px solid var(--hud-accent);border-radius:6px;font-family:var(--hud-font-mono);font-size:0.95rem;font-weight:700;letter-spacing:0.08em;cursor:pointer;z-index:25;box-shadow:0 0 16px rgba(0,255,204,0.3);">✕ CLOSE CAMERA AR</button>
   <button id="xr" class="ar-cta" disabled>Loading Fighter…</button>
   <a id="android-sv" class="ar-cta" href="#">Open AR camera</a>
@@ -666,12 +628,6 @@ header p { margin: 6px 0 0; color: var(--mute); font-size: 1.1rem; }
 
 <div id="overlay">
   <div id="status"></div>
-  <!-- WebXR AR Overlay Scale Controls -->
-  <div id="ar-scale-bar" class="scale-bar-container" style="position:absolute;bottom:calc(74px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:25;">
-    <button class="scale-btn scale-down-btn" title="Shrink to 80%">− Smaller</button>
-    <button class="scale-btn reset scale-reset-btn" title="Reset to 25cm Table Scale">25cm Table</button>
-    <button class="scale-btn scale-up-btn" title="Enlarge to 125%">+ Bigger</button>
-  </div>
   <button id="exit">Close</button>
 </div>
 <p id="note">Loading animated FBX model from S3…</p>
@@ -875,36 +831,6 @@ function computeExactSkinnedBox(root) {
   return box;
 }
 
-let baseTableScale = 0.1378; // Tabletop scale factor (0.25m / 1.814m)
-let currentScaleMultiplier = 1.0;
-
-function updateScale(multiplier) {
-  currentScaleMultiplier = Math.max(0.2, Math.min(4.0, multiplier));
-  fbxWrap.scale.setScalar(baseTableScale * currentScaleMultiplier);
-  fbxWrap.updateMatrixWorld(true);
-  const box = computeExactSkinnedBox(fbxWrap);
-  if (!box.isEmpty()) {
-    const cx = (box.min.x + box.max.x) * 0.5;
-    const cz = (box.min.z + box.max.z) * 0.5;
-    fbxWrap.position.set(-cx, -box.min.y, -cz);
-    fbxWrap.updateMatrixWorld(true);
-  }
-  const currentHeightCm = Math.round(TARGET_HEIGHT * currentScaleMultiplier * 100);
-  document.querySelectorAll('.scale-reset-btn').forEach(btn => {
-    btn.textContent = `${currentHeightCm}cm Table`;
-  });
-}
-
-document.querySelectorAll('.scale-down-btn').forEach(btn => {
-  btn.onclick = (e) => { e.stopPropagation(); updateScale(currentScaleMultiplier * 0.8); };
-});
-document.querySelectorAll('.scale-reset-btn').forEach(btn => {
-  btn.onclick = (e) => { e.stopPropagation(); updateScale(1.0); };
-});
-document.querySelectorAll('.scale-up-btn').forEach(btn => {
-  btn.onclick = (e) => { e.stopPropagation(); updateScale(currentScaleMultiplier * 1.25); };
-});
-
 // Streaming fetch with live % and MB progress
 async function fetchArrayBufferWithProgress(url, onProgress) {
   let res;
@@ -1051,9 +977,7 @@ async function loadFBXModel() {
       s = 0.1378; // Fallback to 0.25m for 1.814m fighter
     }
 
-    baseTableScale = s;
-    currentScaleMultiplier = 1.0;
-    fbxWrap.scale.setScalar(baseTableScale);
+    fbxWrap.scale.setScalar(s);
     fbxWrap.updateMatrixWorld(true);
 
     const box2 = computeExactSkinnedBox(fbxWrap);
